@@ -3,7 +3,6 @@ import UsuariosCadastro from "../models/Usuarios.js";
 
 const router = express.Router();
 
-// Criar usuário
 router.post("/", async (req, res) => {
   try {
     const novoUsuario = await UsuariosCadastro.create(req.body);
@@ -13,7 +12,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Listar todos usuários
 router.get("/", async (req, res) => {
   try {
     const usuarios = await UsuariosCadastro.find();
@@ -23,7 +21,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Buscar usuário por ID
 router.get("/:id", async (req, res) => {
   try {
     const usuario = await UsuariosCadastro.findById(req.params.id);
@@ -38,7 +35,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Atualizar usuário
 router.put("/:id", async (req, res) => {
   try {
     const usuarioAtualizado = await UsuariosCadastro.findByIdAndUpdate(
@@ -53,7 +49,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Deletar usuário
 router.delete("/:id", async (req, res) => {
   try {
     await UsuariosCadastro.findByIdAndDelete(req.params.id);
