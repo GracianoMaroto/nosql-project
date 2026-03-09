@@ -1,6 +1,39 @@
 import express from "express";
+import VideosCadastro from "../models/Videos.js";
 
 const router = express.Router();
+
+router.post("/", async (req, res) => {
+  try {
+    const novoVideo = await VideosCadastro.create(req.body);
+    res.json(novoVideo);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const videos = await VideosCadastro.find();
+    res.json(videos);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const video = await VideosCadastro.findById(req.params.id);
+
+    if (!video) {
+      return res.status(404).json({ erro: "Vídeo não encontrado" });
+    }
+
+    res.json(usuario);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
+});
 
 router.get("/mais-assistidos", async (req, res) => {
   const videos = await VideosCadastro.find()

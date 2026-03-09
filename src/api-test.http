@@ -1,0 +1,116 @@
+### =========================================================
+### CONFIGURAÇÃO BASE DA API
+### =========================================================
+
+@baseUrl = http://localhost:3000
+
+
+### =========================================================
+### USUÁRIOS
+### =========================================================
+
+### Listar todos os usuários
+### Requisito: "Criar e listar usuários"
+
+GET {{baseUrl}}/usuarios
+
+
+### Buscar usuário por ID
+### Substitua pelo ID de um usuário existente
+
+GET {{baseUrl}}/usuarios/69aed66f2c6d911f37f1cfcb
+
+
+### Criar novo usuário
+### Requisito: Usuário deve possuir nome, email, perfis e data de criação
+
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "name": "Carlos Silva",
+  "email": "carlos@email.com",
+  "profiles": [
+    { "name": "Carlos Kids", "ageGroup": "INFANTIL" },
+    { "name": "Carlos", "ageGroup": "ADULTO" }
+  ],
+  "createdAt": "2026-03-09"
+}
+
+
+### =========================================================
+### VÍDEOS
+### =========================================================
+
+### Listar todos os vídeos
+### Requisito: "Criar e listar vídeos"
+
+GET {{baseUrl}}/videos
+
+
+### Criar novo vídeo
+
+POST {{baseUrl}}/videos
+Content-Type: application/json
+
+{
+  "titulo": "Aprendendo Node.js",
+  "categoria": "Programação",
+  "duracao": 25,
+  "visualizacoes": 0,
+  "notaMedia": 0,
+  "dataCadastro": "2026-03-09"
+}
+
+
+### Listar vídeos por categoria
+### Requisito funcional: "Listar vídeos por categoria"
+
+GET {{baseUrl}}/videos/categoria/Programação
+
+
+### Listar os 10 vídeos mais assistidos
+### Requisito técnico: uso de $sort
+
+GET {{baseUrl}}/videos/mais-assistidos
+
+
+### =========================================================
+### HISTÓRICO DE VISUALIZAÇÃO
+### =========================================================
+
+### Listar todo histórico de visualização
+
+GET {{baseUrl}}/historico
+
+
+### Buscar registro de histórico por ID
+
+GET {{baseUrl}}/historico/69aed0e874bfb46d67c32e80
+
+
+### Buscar histórico de um usuário específico
+### Requisito técnico: uso de $lookup para trazer dados do vídeo
+
+GET {{baseUrl}}/historico/usuario/69aed66f2c6d911f37f1cfcb
+
+
+### Registrar visualização de vídeo
+### Regras de negócio aplicadas nesta rota:
+### - Incrementar visualizações do vídeo ($inc)
+### - Recalcular média de avaliações ($group)
+
+POST {{baseUrl}}/historico
+Content-Type: application/json
+
+{
+  "id_usuario": "69aed66f2c6d911f37f1cfcb",
+  "id_video": "69aed78954bce0a113052896",
+  "data_visualizacao": "2026-03-09",
+  "progresso": 100,
+  "avaliacao": 5
+}
+
+### =========================================================
+### FIM DO SCRIPT
+### =========================================================
