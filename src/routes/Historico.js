@@ -51,13 +51,11 @@ router.post("/", async (req, res) => {
   try {
     const historico = await HistoricoRegistro.create(req.body);
 
-    // incrementa visualizações
     await VideosCadastro.updateOne(
       { _id: req.body.id_video },
       { $inc: { visualizacoes: 1 } },
     );
 
-    // recalcula nota média
     if (req.body.avaliacao) {
       const media = await HistoricoRegistro.aggregate([
         {
