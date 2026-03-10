@@ -21,20 +21,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const video = await VideosCadastro.findById(req.params.id);
-
-    if (!video) {
-      return res.status(404).json({ erro: "Vídeo não encontrado" });
-    }
-
-    res.json(usuario);
-  } catch (error) {
-    res.status(500).json({ erro: error.message });
-  }
-});
-
 router.get("/mais-assistidos", async (req, res) => {
   const videos = await VideosCadastro.find()
     .sort({ visualizacoes: -1 })
@@ -49,5 +35,19 @@ router.get("/categoria/:categoria", async (req, res) => {
   });
 
   res.json(videos);
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const video = await VideosCadastro.findById(req.params.id);
+
+    if (!video) {
+      return res.status(404).json({ erro: "Vídeo não encontrado" });
+    }
+
+    res.json(video);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
 });
 export default router;

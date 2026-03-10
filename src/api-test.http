@@ -18,7 +18,7 @@ GET {{baseUrl}}/usuarios
 ### Buscar usuário por ID
 ### Substitua pelo ID de um usuário existente
 
-GET {{baseUrl}}/usuarios/69aed66f2c6d911f37f1cfcb
+GET {{baseUrl}}/usuarios/69b00511dfc78d8568df9eb8
 
 
 ### Criar novo usuário
@@ -92,7 +92,7 @@ GET {{baseUrl}}/historico/69aed0e874bfb46d67c32e80
 ### Buscar histórico de um usuário específico
 ### Requisito técnico: uso de $lookup para trazer dados do vídeo
 
-GET {{baseUrl}}/historico/usuario/69aed66f2c6d911f37f1cfcb
+GET {{baseUrl}}/historico/usuario/69b00511dfc78d8568df9eb8
 
 
 ### Registrar visualização de vídeo
